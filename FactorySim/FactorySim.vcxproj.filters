@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ProductionLine">
+      <UniqueIdentifier>{ab9219d8-4da5-4702-80ef-b454598f0666}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TimeStep">
+      <UniqueIdentifier>{5617a284-0a07-40d1-b6cb-d8a76c47ffa8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Worker">
+      <UniqueIdentifier>{c951eff2-19b0-4068-b08b-7c4b8b4b3dfb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Factory">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="SlotItems">
+      <UniqueIdentifier>{435ea3c6-6f2e-4d7e-b0c8-dfdcc9b17193}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SlotItems\Components">
+      <UniqueIdentifier>{0887ed81-0923-484d-9781-44f2722d038a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SlotItems\Products">
+      <UniqueIdentifier>{17aca8d2-64d3-4a9c-81a3-a0d7a00b98bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{13cd3cc0-f5dc-4a82-ab48-5eb1589d6907}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SimulationParameters">
+      <UniqueIdentifier>{bc4ad6cb-1b73-475a-9bfb-82ff22feabfc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="FactorySim.cpp">
+      <Filter>Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="ItemOutputStatistics.cpp">
+      <Filter>ProductionLine</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ITimeStepping.h">
+      <Filter>TimeStep</Filter>
+    </ClInclude>
+    <ClInclude Include="ProductionLine.h">
+      <Filter>ProductionLine</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentA.h">
+      <Filter>SlotItems\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentB.h">
+      <Filter>SlotItems\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentBase.h">
+      <Filter>SlotItems\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentC.h">
+      <Filter>SlotItems\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ProductBase.h">
+      <Filter>SlotItems\Products</Filter>
+    </ClInclude>
+    <ClInclude Include="ProductP.h">
+      <Filter>SlotItems\Products</Filter>
+    </ClInclude>
+    <ClInclude Include="ProductQ.h">
+      <Filter>SlotItems\Products</Filter>
+    </ClInclude>
+    <ClInclude Include="FactorySim.h">
+      <Filter>Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="ISlotItem.h">
+      <Filter>SlotItems</Filter>
+    </ClInclude>
+    <ClInclude Include="SlotItems.h">
+      <Filter>SlotItems</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemOutputStatistics.h">
+      <Filter>ProductionLine</Filter>
+    </ClInclude>
+    <ClInclude Include="Components.h">
+      <Filter>SlotItems\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Products.h">
+      <Filter>SlotItems\Products</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentNull.h">
+      <Filter>SlotItems\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="IWorker.h">
+      <Filter>Worker</Filter>
+    </ClInclude>
+    <ClInclude Include="StationaryWorker.h">
+      <Filter>Worker</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentRandomGenerator.h">
+      <Filter>SlotItems\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="IComparable.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="WorkerStatus.h">
+      <Filter>Worker</Filter>
+    </ClInclude>
+    <ClInclude Include="ProductHelpers.h">
+      <Filter>SlotItems\Products</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentHelpers.h">
+      <Filter>SlotItems\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstructProduct.h">
+      <Filter>SlotItems\Products</Filter>
+    </ClInclude>
+    <ClInclude Include="Worker.h">
+      <Filter>Worker</Filter>
+    </ClInclude>
+    <ClInclude Include="SimulationParameters.h">
+      <Filter>SimulationParameters</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Interview-problem.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+  </ItemGroup>
+</Project>
