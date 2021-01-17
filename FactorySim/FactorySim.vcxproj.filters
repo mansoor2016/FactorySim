@@ -38,6 +38,24 @@
     <ClCompile Include="ItemOutputStatistics.cpp">
       <Filter>ProductionLine</Filter>
     </ClCompile>
+    <ClCompile Include="IWorker.cpp">
+      <Filter>Worker</Filter>
+    </ClCompile>
+    <ClCompile Include="StationaryWorker.cpp">
+      <Filter>Worker</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentHelpers.cpp">
+      <Filter>SlotItems\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ConstructProduct.cpp">
+      <Filter>SlotItems\Products</Filter>
+    </ClCompile>
+    <ClCompile Include="ProductHelpers.cpp">
+      <Filter>SlotItems\Products</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentRandomGenerator.cpp">
+      <Filter>SlotItems\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ITimeStepping.h">

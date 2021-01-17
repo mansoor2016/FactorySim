@@ -13,16 +13,16 @@ int FactorySim::RunSimulations(std::ostream& os)
     {
         for (size_t step = 0; step < SP::Steps; ++step)
         {
-            isDebug ? [&] { os << "Steps: " << step << std::endl; }() : (void)(0);
+            TRACE(os << "Steps: " << step << std::endl;);
 
             productionLine->Step();
-            isDebug ? productionLine->PrintConveyerBelt(os) : (void)(0);
+            TRACE(productionLine->PrintConveyerBelt(os));
 
             std::for_each(workers.begin(), workers.end(), 
                 [&](auto& worker) 
                 {
                     worker->Step();
-                    isDebug ? worker->PrintWorker(os) : (void)(0);
+                    TRACE(worker->PrintWorker(os));
                 });
         }
 

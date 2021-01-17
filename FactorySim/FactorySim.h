@@ -8,6 +8,13 @@
 #include "ProductionLine.h"
 #include "SimulationParameters.h"
 
+#if defined NDEBUG
+#define TRACE( statement, ... )
+#else
+#define TRACE( format, ... )   format
+#endif
+
+
 class FactorySim
 {
 public:
@@ -25,10 +32,4 @@ private:
         std::make_unique<StationaryWorker>(productionLine, 2),
         std::make_unique<StationaryWorker>(productionLine, 4)
     };
-
-#ifndef NDEBUG
-    bool isDebug = true;
-#else
-    bool isDebug = false;
-#endif
 };
