@@ -13,6 +13,8 @@ int FactorySim::RunSimulations(std::ostream& os)
     {
         for (size_t step = 0; step < SP::Steps; ++step)
         {
+            isDebug ? [&] { os << "Steps: " << step << std::endl; }() : (void)(0);
+
             productionLine->Step();
             isDebug ? productionLine->PrintConveyerBelt(os) : (void)(0);
 
@@ -25,7 +27,6 @@ int FactorySim::RunSimulations(std::ostream& os)
         }
 
         productionLine->PostProcess(os);
-
         return 0;
     }
     catch (std::exception& ex)

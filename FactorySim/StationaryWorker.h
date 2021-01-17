@@ -37,14 +37,14 @@ class StationaryWorker final : public IWorker
 		}
 
 		const ISlotItem* item = productionLine->ViewItemAtPosition(position).get();
-
 		if (ComponentHelpers::IsComponent(item))
 		{
-			auto currentComp = productionLine->RemoveComponentFromSlot(position);
-			auto currentCompType = ComponentHelpers::Classify(currentComp.get());
+			auto currentComp = dynamic_cast<const ComponentBase*>(item);
+			auto currentCompType = ComponentHelpers::Classify(currentComp);
 
-			if (currentCompType != comp1.second)
+			if (CombineComponents::ConstructType(comp1.second, currentCompType).has_value())
 			{
+				auto currentComp = productionLine->RemoveComponentFromSlot(position);
 				comp2 = std::make_pair(std::move(currentComp), currentCompType);
 				status = WorkerStatus::CombiningComponents;
 			}

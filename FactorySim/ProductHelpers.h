@@ -60,7 +60,7 @@ struct ProductHelpers
 			return std::make_unique<ProductQ>();
 			break;
 		default:
-			throw std::invalid_argument("Unexpectd product type, could not create");
+			throw std::invalid_argument("Unexpected product type, could not create");
 			break;
 		}
 	};

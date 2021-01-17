@@ -24,21 +24,21 @@ struct ComponentHelpers
 		return ptr;
 	}
 
-	static ComponentType Classify(ComponentBase* comp)
+	static ComponentType Classify(const ComponentBase* comp)
 	{
-		if (dynamic_cast<ComponentA*>(comp))
+		if (dynamic_cast<const ComponentA*>(comp))
 		{
 			return ComponentType::A;
 		}
-		else if (dynamic_cast<ComponentB*>(comp))
+		else if (dynamic_cast<const ComponentB*>(comp))
 		{
 			return ComponentType::B;
 		}
-		else if (dynamic_cast<ComponentC*>(comp))
+		else if (dynamic_cast<const ComponentC*>(comp))
 		{
 			return ComponentType::C;
 		}
-		else if (dynamic_cast<ComponentNull*>(comp))
+		else if (dynamic_cast<const ComponentNull*>(comp))
 		{
 			return ComponentType::Null;
 		}
@@ -68,6 +68,27 @@ struct ComponentHelpers
 		throw std::invalid_argument("Unexpected component type, unable to classify.");
 	}
 
+	static std::string ClassifyToString(ComponentType comp)
+	{
+		switch (comp)
+		{
+		case ComponentType::A:
+			return "A";
+			break;
+		case ComponentType::B:
+			return "B";
+			break;
+		case ComponentType::C:
+			return "C";
+			break;
+		case ComponentType::Null:
+			return "Null";
+			break;
+		default:
+			throw std::invalid_argument("Unexpected component type, unable to classify.");
+		}
+	}
+
 	static CompBasePtr Create(ComponentType comp)
 	{
 		switch (comp)
@@ -82,7 +103,7 @@ struct ComponentHelpers
 			return std::make_unique<ComponentC>();
 			break;
 		default:
-			throw std::invalid_argument("Unexpectd product type, could not create");
+			throw std::invalid_argument("Unexpected product type, could not create");
 			break;
 		}
 	};

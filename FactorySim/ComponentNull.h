@@ -18,7 +18,7 @@ public:
 
 	virtual bool IsNull() const override
 	{ 
-		return false;
+		return true;
 	}
 
 	double SpawnProbability() const override
