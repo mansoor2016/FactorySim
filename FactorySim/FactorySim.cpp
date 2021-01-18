@@ -1,4 +1,6 @@
 #include <memory>
+#include <future>
+#include <vector>
 #include <utility>
 #include <ostream>
 #include <iostream>
@@ -11,22 +13,7 @@ int FactorySim::RunSimulations(std::ostream& os)
 {
     try
     {
-        for (size_t step = 0; step < SP::Steps; ++step)
-        {
-            TRACE(os << "Steps: " << step << std::endl;);
-
-            productionLine->Step();
-            TRACE(productionLine->PrintConveyerBelt(os));
-
-            std::for_each(workers.begin(), workers.end(), 
-                [&](auto& worker) 
-                {
-                    worker->Step();
-                    TRACE(worker->PrintWorker(os));
-                });
-        }
-
-        productionLine->PostProcess(os);
+        ExecuteProductionLine(os);
         return 0;
     }
     catch (std::exception& ex)
@@ -41,4 +28,38 @@ int FactorySim::RunSimulations(std::ostream& os)
     }
 
     return -1;
+}
+
+void FactorySim::ExecuteProductionLine(std::ostream& os)
+{
+    for (size_t step = 0; step < SP::Steps; ++step)
+    {
+        TRACE(os << "Steps: " << step << std::endl;);
+
+        productionLine->Step();
+        TRACE(productionLine->PrintConveyerBelt(os));
+
+        std::vector<std::future<void>> futures;
+        futures.reserve(SP::NWorkers);
+
+        for (auto& worker : workers)
+        {
+            futures.push_back(
+                std::async(
+                    std::launch::async,
+                    [&]
+                    {
+                        worker->Step();
+                        TRACE(worker->PrintWorker(os));
+                    }));
+        }
+
+        std::for_each(futures.begin(), futures.end(),
+            [&](auto& future) 
+            { 
+                future.wait();
+            });
+    }
+
+    productionLine->PostProcess(os);
 }

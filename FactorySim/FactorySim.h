@@ -22,6 +22,8 @@ public:
 
     int RunSimulations(std::ostream& os);
 
+    void ExecuteProductionLine(std::ostream& os);
+
 private:
     std::shared_ptr<CurrentProductionLine> productionLine =
         std::make_shared<CurrentProductionLine>();
