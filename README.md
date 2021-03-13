@@ -7,3 +7,4 @@ A basic factory production line simulation.
      ---------------------
        ^   ^   ^   ^   ^          workers
 ```
+Needs refactoring.
