@@ -27,23 +27,21 @@ class ProductionLine : public ITimeStepping
 			return;
 		}
 
-		ISlotItemPtr item{ productionLine.back().release() };
-		outputStats.IngestItem(std::move(item));
+		outputStats.IngestItem(std::move(productionLine.back()));
 	}
 
 	void MoveBeltAlong()
 	{
 		for (size_t idx = (NSlots-1); idx > 0; --idx)
 		{
-			auto ptr = productionLine[idx - 1].release();
-			productionLine[idx].reset(std::move(ptr));
+			productionLine[idx] = std::move(productionLine[idx - 1]);
 		}
 	}
 
 	void SpawnItemFirstSlot()
 	{
-		ComponentRandomGenerator generator;
-		productionLine[0].reset(generator.Generate().release());
+		static ComponentRandomGenerator generator;
+		productionLine[0] = std::move(generator.Generate());
 	}
 
 public:
@@ -76,12 +74,10 @@ public:
 
 	CompBasePtr RemoveComponentFromSlot(size_t slotPosition)
 	{
-		ISlotItemPtr& item = productionLine[slotPosition];
-		
+		ISlotItemPtr& item = productionLine[slotPosition];		
 		if (ComponentHelpers::IsComponent(item.get()))
 		{
-			ComponentBase* removedComponent = dynamic_cast<ComponentBase*>(item.release());
-			return std::unique_ptr<ComponentBase>(removedComponent);
+			return std::unique_ptr<ComponentBase>(dynamic_cast<ComponentBase*>(productionLine[slotPosition].release()));
 		}
 
 		return nullptr;
@@ -91,7 +87,7 @@ public:
 		ProdBasePtr product,
 		size_t slotPosition)
 	{
-		productionLine[slotPosition].reset(product.release());
+		productionLine[slotPosition] = std::move(product);
 	}
 
 	// For debugging purposes
